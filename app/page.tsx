@@ -11,6 +11,17 @@ const sections = [
     ],
   },
   {
+    title: "Fundamentos do Next.js",
+    items: [
+      { label: "Roteamento", href: "/nextjs/routing" },
+      { label: "Layouts", href: "/nextjs/layouts" },
+      { label: "Server Components", href: "/nextjs/server-components" },
+      { label: "Client Components", href: "/nextjs/client-components" },
+      { label: "Server Actions", href: "/nextjs/server-actions" },
+      { label: "Metadata", href: "/nextjs/metadata" },
+    ],
+  },
+  {
     title: "Hooks",
     items: [
       { label: "useState", href: "/react/hooks/use-state" },
