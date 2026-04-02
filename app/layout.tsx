@@ -1,3 +1,8 @@
+/*
+O arquivo `app/layout.tsx` é o layout raiz da aplicação. 
+Ele envolve todas as páginas e componentes, permitindo definir estilos globais, fontes e provedores de contexto que estarão disponíveis em toda a aplicação.
+*/
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

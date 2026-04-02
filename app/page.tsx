@@ -13,12 +13,12 @@ const sections = [
   {
     title: "Fundamentos do Next.js",
     items: [
-      { label: "Roteamento", href: "/nextjs/routing" },
-      { label: "Layouts", href: "/nextjs/layouts" },
-      { label: "Server Components", href: "/nextjs/server-components" },
-      { label: "Client Components", href: "/nextjs/client-components" },
+      { label: "App Router", href: "/nextjs/app-router" },
+      { label: "Server Components", href: "/nextjs/server-side" },
+      { label: "Client Components", href: "/nextjs/client-side" },
       { label: "Server Actions", href: "/nextjs/server-actions" },
-      { label: "Metadata", href: "/nextjs/metadata" },
+      { label: "Fetch & Cache", href: "/nextjs/fetch-cache" },
+      { label: "Otimizações", href: "/nextjs/optimizations" },
     ],
   },
   {

@@ -106,6 +106,34 @@ export default function Page() {
         adicionando prefetching e navegação client-side entre rotas. É a forma
         de navegar no Next.js.
       </p>
+      {/* Route Groups */}
+      <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+        Route Groups
+      </h2>
+      <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-3">
+        Pastas com parênteses no nome criam grupos de rota sem afetar a URL.
+        Úteis para organizar rotas por seção ou aplicar layouts diferentes sem
+        criar segmentos extras no caminho:
+      </p>
+      <div className="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3 mb-3 font-mono text-sm text-zinc-600 dark:text-zinc-400 space-y-0.5">
+        <p>app/</p>
+        <p className="pl-4 text-zinc-900 dark:text-zinc-50 font-semibold">
+          (education)/
+        </p>
+        <p className="pl-8">nextjs/</p>
+        <p className="pl-12">app-router/</p>
+        <p className="pl-16">page.tsx</p>
+        <p className="pl-8">layout.tsx</p>
+      </div>
+      <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-8">
+        A pasta{" "}
+        <code className="bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 px-1.5 py-0.5 rounded text-sm font-mono">
+          (education)
+        </code>{" "}
+        agrupa as rotas de conteúdo educacional sem aparecer na URL — esta
+        própria página está dentro dela.
+      </p>
+
       <div className="flex flex-col gap-2 mb-4">
         {[
           {

@@ -1,6 +1,6 @@
 "use server";
 
-export async function salvarTarefa(formData: FormData) {
+export async function salvarTarefa(_prevState: unknown, formData: FormData) {
   const titulo = formData.get("titulo") as string;
 
   if (!titulo?.trim()) {

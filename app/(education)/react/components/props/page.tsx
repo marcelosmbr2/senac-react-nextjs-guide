@@ -1,4 +1,4 @@
-import { Profile } from "./_components/profile";
+import { Profile } from "./_components/profile"
 
 // Guide: https://react.dev/learn/passing-props-to-a-component
 

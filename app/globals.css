@@ -1,3 +1,9 @@
+/*
+O arquivo `app/globals.css` é onde você pode definir estilos globais para a sua aplicação.
+Esses estilos serão aplicados a todas as páginas e componentes da aplicação, garantindo uma aparência consistente em todo o site.
+*/
+
+
 @import "tailwindcss";
 
 :root {
