@@ -9,7 +9,7 @@ interface TodoItem {
 
 export default function TodoListPage() {
   const [list, setList] = React.useState<TodoItem[]>([]);
-  const [input, setInput] = React.useState("");
+  const [input, setInput] = React.useState();
 
   React.useEffect(() => {
     if(list.length >= 0) {

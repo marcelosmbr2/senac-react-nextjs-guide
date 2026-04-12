@@ -10,7 +10,7 @@ export default function UseEffectPage() {
   React.useEffect(() => {
     document.title = `Você clicou ${counter} vezes`;
   }, [counter]);
-
+  
   return (
     <div className="p-6 max-w-2xl">
       <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">
