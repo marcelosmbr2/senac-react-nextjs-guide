@@ -67,12 +67,12 @@ export default function Page() {
           <strong className="text-zinc-700 dark:text-zinc-300">
             Shadcn UI ⭐
           </strong>{" "}
-          — preferida. Não é uma lib instalada como dependência: os componentes
+          É preciso realizar a instalação dela, porém os
           são{" "}
           <strong className="text-zinc-700 dark:text-zinc-300">
-            copiados para o projeto
+            componentes são instalados sob demanda, 
           </strong>
-          , ficando totalmente sob seu controle. Construída sobre Radix UI +
+          ficando totalmente sob seu controle. Construída sobre Radix UI/Base UI +
           Tailwind, com acessibilidade e customização.
         </li>
         <li>
@@ -84,8 +84,8 @@ export default function Page() {
         <li>
           ·{" "}
           <strong className="text-zinc-700 dark:text-zinc-300">Preline</strong>{" "}
-          — UI kit completo baseado em Tailwind, com componentes, layouts e
-          padrões de interface.
+          — biblioteca de componentes prontos com suporte nativo ao Tailwind,
+          incluindo variantes interativas em JavaScript.
         </li>
       </ul>
       <p className="text-sm text-zinc-600 dark:text-zinc-400">

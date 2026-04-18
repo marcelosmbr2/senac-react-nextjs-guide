@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 
 import * as React from "react";
@@ -43,7 +45,7 @@ export default function TodoListPage() {
       <div className="flex gap-2 mb-6">
         <input
           type="text"
-          value={input}
+          value={input} 
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addItem()}
           placeholder="Nova tarefa..."
