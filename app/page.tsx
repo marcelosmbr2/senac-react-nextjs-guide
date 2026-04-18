@@ -45,9 +45,19 @@ const sections: { title: string; items: NavItem[] }[] = [
     ],
   },
   {
+    title: "Estilização",
+    items: [{ label: "Tailwind CSS", href: "/tailwind-css" }],
+  },
+  {
     title: "Fetch Api",
     items: [
-      { label: "Axios", href: "/fetch-api" },
+      {
+        label: "Fetch Api",
+        children: [
+          { label: "Server Component", href: "/fetch-api/server-component" },
+          { label: "Client Component", href: "/fetch-api/client-component" },
+        ],
+      },
     ],
   },
 ];
