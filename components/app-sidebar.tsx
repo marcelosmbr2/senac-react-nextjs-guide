@@ -53,6 +53,7 @@ const sections = [
         children: [
           { label: "Formulário", href: "/react/examples/form" },
           { label: "Todo List", href: "/react/examples/todo-list" },
+          { label: "Tabela", href: "/react/examples/table" },
         ],
       },
     ],
