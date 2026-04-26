@@ -1,24 +1,24 @@
-"use client";
+import { Metadata } from "next";
+import { BackButton } from "@/components/back-button";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+/* 
+Metada do layout se aplica a todas as páginas dentro do layout
+*/
+export const metadata: Metadata = {
+  title: "Education",
+  description: "Learning React and Next.js",
+};
 
-export default function ReactLayout({
+export default function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
 
   return (
     <>
       <div className="px-4 pt-4">
-        <button
-          onClick={() => router.back()}
-          className="inline-flex items-center gap-x-1 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-        >
-          ← Voltar
-        </button>
+        <BackButton />
       </div>
       {children}
     </>

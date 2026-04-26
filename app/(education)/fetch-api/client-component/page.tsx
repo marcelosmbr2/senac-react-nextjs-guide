@@ -2,22 +2,23 @@
 
 import * as React from "react";
 import axios from "@/lib/axios";
+import { Button } from "@/components/ui/button";
 
 type Post = {
   id: number;
   title: string;
-  slug: string;
+  userId: number;
   body: string;
 };
 
-export default function FetchApiClientPage() {
+export default function Page() {
   const [posts, setPosts] = React.useState<Post[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     axios
-      .get<Post[]>("/blog")
+      .get<Post[]>("/posts")
       .then((res) => setPosts(res.data))
       .catch(() => setError("Erro ao carregar os posts."))
       .finally(() => setLoading(false));
@@ -45,9 +46,9 @@ export default function FetchApiClientPage() {
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             Os posts vêm da API pública{" "}
             <code className="font-mono text-xs bg-zinc-100 dark:bg-zinc-800 px-1 py-0.5 rounded">
-              https://api.vercel.app/blog
+              https://jsonplaceholder.typicode.com
             </code>
-            , disponibilizada pela Vercel como exemplo para a documentação do Next.js.
+            , disponibilizada pelo site <a href="https://jsonplaceholder.typicode.com" target="_blank" rel="noopener noreferrer" className="text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">JSON Placeholder</a>.
           </p>
         </div>
 
@@ -68,9 +69,9 @@ export default function FetchApiClientPage() {
           Resultado
         </span>
 
-        {loading && (
-          <p className="text-sm text-zinc-400 dark:text-zinc-500">Carregando posts…</p>
-        )}
+          {loading && (
+            <p className="text-sm text-zinc-400 dark:text-zinc-500">Carregando posts…</p>
+          )}
 
         {error && (
           <div className="rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 px-4 py-3">
@@ -96,12 +97,9 @@ export default function FetchApiClientPage() {
                 <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 flex-1">
                   {post.body.slice(0, 80)}…
                 </p>
-                <a
-                  href={`/blog/${post.slug}`}
-                  className="mt-3 self-start py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
-                >
+                <Button variant="outline">
                   Ler post
-                </a>
+                </Button>
               </div>
             </div>
           ))}

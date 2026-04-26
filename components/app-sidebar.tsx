@@ -4,22 +4,14 @@ import * as React from "react";
 import { Command } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-
-const user = {
-  name: "Estudante",
-  email: "estudante@exemplo.com",
-  avatar: "/avatars/shadcn.jpg",
-};
 
 const sections = [
   {
