@@ -9,7 +9,21 @@ import "./globals.css";
 import { CounterProvider } from "@/context/global-counter";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+/*
+Componente de Dashboard: npx shadcn@latest add sidebar-07
+Doc: https://ui.shadcn.com/blocks
+*/
+import { AppSidebar } from "@/components/app-sidebar";
+import { Separator } from "@/components/ui/separator";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+
+import { DynamicBreadcrumb } from "@/components/breadcrumb";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,10 +48,36 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        inter.variable,
+      )}
     >
       <body className="min-h-full flex flex-col">
-        <CounterProvider>{children}</CounterProvider>
+        <CounterProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <header className="flex h-16 shrink-0 items-center gap-2">
+                <div className="flex items-center gap-2 px-4">
+                  <SidebarTrigger className="-ml-1" />
+                  <Separator
+                    orientation="vertical"
+                    className="mr-2 data-vertical:h-4 data-vertical:self-auto"
+                  />
+                  <DynamicBreadcrumb />
+                </div>
+              </header>
+              <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+                {children}
+              </div>
+            </SidebarInset>
+          </SidebarProvider>
+        </CounterProvider>
       </body>
     </html>
   );

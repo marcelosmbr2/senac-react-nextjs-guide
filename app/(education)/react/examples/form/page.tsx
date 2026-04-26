@@ -1,29 +1,36 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 
 // React Hook Form: https://react-hook-form.com/get-started#Quickstart
-// Yup Validation: https://react-hook-form.com/get-started#SchemaValidation
+// Zod Validation: https://zod.dev/basics#defining-a-schema
 
-const schema = yup.object({
-  name: yup
-    .string()
-    .min(2, "Nome deve ter pelo menos 2 caracteres")
-    .required("Nome é obrigatório"),
-  email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
-  password: yup
-    .string()
-    .min(8, "Senha deve ter pelo menos 8 caracteres")
-    .required("Senha é obrigatória"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "As senhas não coincidem")
-    .required("Confirmação de senha é obrigatória"),
+const schema = z.object({
+  email: z.string().email("E-mail inválido"),
+  password: z.string().min(8, "Senha deve ter pelo menos 8 caracteres"),
 });
 
-type FormData = yup.InferType<typeof schema>;
+type FormData = z.infer<typeof schema>;
 
 export default function FormPage() {
   const {
@@ -31,7 +38,7 @@ export default function FormPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: yupResolver(schema),
+    resolver: zodResolver(schema),
   });
 
   function onSubmit(data: FormData) {
@@ -40,102 +47,58 @@ export default function FormPage() {
   }
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen">
-        <div className="w-full bg-white rounded-lg shadow sm:max-w-md dark:bg-gray-800">
-          <div className="p-6 space-y-4 sm:p-8">
-            <h1 className="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
-              Criar conta 
-            </h1>
-
-            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Seu nome"
-                  {...register("name")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white"
-                />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  E-mail
-                </label>
-                <input
-                  id="email"
-                  placeholder="nome@empresa.com"
-                  {...register("email")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white"
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Senha
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="••••••••"
-                  {...register("password")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white"
-                />
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label
-                  htmlFor="confirmPassword"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Confirmar senha
-                </label>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  placeholder="••••••••"
-                  {...register("confirmPassword")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:text-white"
-                />
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.confirmPassword.message}
-                  </p>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5"
-              >
-                Criar conta
-              </button>
-            </form>
-          </div>
+    <div>
+      <div className="w-full max-w-sm">
+        <div className={cn("flex flex-col gap-6")}>
+          <Card>
+            <CardHeader>
+              <CardTitle>Login to your account</CardTitle>
+              <CardDescription>
+                Enter your email below to login to your account
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <FieldGroup>
+                  <Field>
+                    <FieldLabel htmlFor="email">Email</FieldLabel>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="m@example.com"
+                      {...register("email")}
+                    />
+                    <FieldError>{errors.email?.message}</FieldError>
+                  </Field>
+                  <Field>
+                    <div className="flex items-center">
+                      <FieldLabel htmlFor="password">Password</FieldLabel>
+                      <a
+                        href="#"
+                        className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                      >
+                        Forgot your password?
+                      </a>
+                    </div>
+                    <Input
+                      id="password"
+                      type="password"
+                      {...register("password")}
+                    />
+                    <FieldError>{errors.password?.message}</FieldError>
+                  </Field>
+                  <Field>
+                    <Button type="submit">Login</Button>
+                    <FieldDescription className="text-center">
+                      Don&apos;t have an account? <a href="#">Sign up</a>
+                    </FieldDescription>
+                  </Field>
+                </FieldGroup>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,11 +1,3 @@
-"use client"
-
-interface User {
-  id: number,
-  name: string;
-  email: string
-}
-
 export default async function Page({
   params,
 }: {
